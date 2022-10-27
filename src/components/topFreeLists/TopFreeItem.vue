@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AppInfoType } from '@/types'
+import { vLazyLoad } from '@/directives/lazyload';
 import { computed } from 'vue'
 import Rate from '../Rate.vue'
 
@@ -10,7 +11,7 @@ const props = withDefaults(
     rank?: boolean
   }>(),
   {
-    index: 0,
+    index: 1,
     rank: false
   }
 )
@@ -24,7 +25,7 @@ const isRoundImg = computed<boolean>(() => props.index % 2 === 0)
       {{ props.index }}
     </div>
     <img
-      v-lazyload="appData.image"
+      v-lazy-load="appData.image"
       class="topfree__item_img"
       :class="isRoundImg && 'round'"
       alt=""
@@ -49,6 +50,7 @@ const isRoundImg = computed<boolean>(() => props.index % 2 === 0)
 <style lang="scss" scoped>
 @import '@/assets/style/variable.scss';
 @import '@/assets/style/mixins/mixin.scss';
+
 .topfree__item {
   display: flex;
   align-items: center;
