@@ -1,0 +1,54 @@
+// WIDTH
+$--max-width: 750px;
+$--min-width: 375px;
+
+// PADDING
+$--padding-large: 20px;
+$--padding-medium: 14px;
+$--padding-base: 10px;
+
+// COLOR
+$--color-text-regular: #010101 !default; // 常规文字
+$--color-text-secondary: #8B8A8D !default; // 次要文字
+$--color-text-placeholder: #8A898B !default;  // 占位文字
+$--border-color-base: #CDCDCE !default; // 一级边框
+$--border-color-light: #CDCCCF !default; // 二级边框
+$--border-color-lighter: #EFEFEF !default; // 二级边框
+$--background-color: #EEEDEF!default; // 搜索框背景色
+
+// TYPOGRAPHY
+$--font-size-extra-large: 20px !default; // 主标题
+$--font-size-large: 18px !default; // 标题
+$--font-size-medium: 16px !default; // 小标题
+$--font-size-base: 14px !default; // 正文
+$--font-size-small: 13px !default; // 正文（小）
+$--font-size-extra-small: 12px !default; // 正文（小）
+
+
+// BREAK POINT
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+  'xs': (max-width: $--sm - 1),
+  'sm': (min-width: $--sm),
+  'md': (min-width: $--md),
+  'lg': (min-width: $--lg),
+  'xl': (min-width: $--xl),
+);
+
+$--breakpoints-spec: (
+  'xs-only': (max-width: $--sm - 1),
+  'sm-and-up': (min-width: $--sm),
+  'sm-only': '(min-width: #{$--sm}) and (max-width: #{$--md -1})',
+  'sm-and-down': (max-width: $--md - 1),
+  'md-and-up': (min-width: $--md),
+  'md-only': '(min-width: #{$--md}) and (max-width: #{$--lg -1})',
+  'md-and-down': (max-width: $--lg - 1),
+  'lg-and-up': (min-width: $--lg),
+  'lg-only': '(min-width: #{$--lg}) and (max-width: #{$--xl - 1})',
+  'lg-and-down': (max-width: $--xl - 1),
+  'xl-only': (min-width: $--xl),
+)
