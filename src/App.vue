@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onActivated, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import SearchInput from '@/components/SearchInput.vue'
 import SearchPage from '@/views/SearchPage.vue'
@@ -16,17 +16,14 @@ const mainbox = ref()
 const handleSearch = (key: string) => {
   key = key.toLowerCase().trim()
   searchKey.value = key
-
   if (key === '') {
     return
   }
-
   mainbox.value.style.overflow = 'hidden'
   mainbox.value.scrollTop = 0
   appStore.updateSearchResultApps(key)
   mainbox.value.style.overflow = 'auto'
 }
-
 </script>
 
 <template>

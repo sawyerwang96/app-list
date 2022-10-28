@@ -1,7 +1,11 @@
 import { expect, describe, it, beforeAll } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { useAppStore } from '@/stores/useAppStore'
-import { mockBaseAppData, mockRecommendApps, mockTopFreeApps } from '@/mock/testMockData'
+import {
+  mockBaseAppData,
+  mockRecommendApps,
+  mockTopFreeApps
+} from '@/mock/testMockData'
 describe('Pinia', () => {
   let appStore: any
   beforeAll(() => {
@@ -33,7 +37,7 @@ describe('Pinia', () => {
     appStore.updateRecommendApps([mockBaseAppData, ...mockRecommendApps])
     appStore.updateTopFreeApps([...mockTopFreeApps, mockBaseAppData])
     appStore.updateSearchResultApps(mockBaseAppData.name)
-    let len = (mockRecommendApps.length + mockTopFreeApps.length) - 1
+    const len = mockRecommendApps.length + mockTopFreeApps.length - 1
     expect(appStore.searchResultApps.length).toEqual(len)
   })
 })
