@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
 import RecommendItem from '@/components/recommendList/RecommendItem.vue'
 
-import { appData as data } from '@/mock/testMockData'
+import { mockBaseAppData as data } from '@/mock/testMockData'
 
 describe('RecommendItem.vue', () => {
   let wrapper: VueWrapper

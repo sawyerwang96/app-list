@@ -1,4 +1,9 @@
-import type { AppInfoListType } from '@/types'
+import type {
+  AppInfoListType,
+  AppInfoType,
+  originalAppInfoBase,
+  originalAppInfoOther
+} from '@/types'
 
 /**
  * 防抖
@@ -82,4 +87,46 @@ export const filterAndClassify = (
     firstList,
     secondList
   }
+}
+
+/**
+ * 从原始数据中提出后续使用的数据
+ * @param data 原始数据数组
+ */
+export const dataHandler: (data: Array<originalAppInfoBase>) => {
+  ids: Array<string>
+  datalist: AppInfoListType
+} = (data) => {
+  const ids: Array<string> = []
+  const datalist: AppInfoListType = data.map(
+    (item: originalAppInfoBase): AppInfoType => {
+      ids.push(item.id.attributes['im:id'])
+      return {
+        id: item.id.attributes['im:id'],
+        category: item.category.attributes.label,
+        name: item['im:name'].label,
+        image: item['im:image'][2].label,
+        summary: item.summary.label,
+        artist: item['im:artist'].label,
+        rate: 0,
+        comments: 0
+      }
+    }
+  )
+  return { ids, datalist }
+}
+
+/**
+ * 获取应用评分、以及评论数
+ * @param target 需要设置评分、评论数的数据对象
+ * @param origin 包含评分、评论数的原始数据
+ */
+export const dataMerge = (
+  target: AppInfoListType,
+  origin: Array<originalAppInfoOther>
+) => {
+  origin.forEach((item, index: number) => {
+    target[index].rate = item.averageUserRating
+    target[index].comments = item.userRatingCount || 0
+  })
 }

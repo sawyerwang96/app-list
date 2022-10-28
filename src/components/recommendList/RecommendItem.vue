@@ -6,16 +6,22 @@ export default {
 <script setup lang="ts">
 import type { AppInfoType } from '@/types'
 import { computed } from 'vue'
-const props = withDefaults(defineProps<{
-  data: AppInfoType
-}>(), {})
+const props = withDefaults(
+  defineProps<{
+    data: AppInfoType
+  }>(),
+  {}
+)
 const appData = computed<AppInfoType>(() => props.data)
 </script>
 
 <template>
   <div class="recommend__item">
     <img :src="appData.image" alt="" class="recommend__item_img" />
-    <div class="recommend__item_name ellipsis text_center" :title="appData.name">
+    <div
+      class="recommend__item_name ellipsis text_center"
+      :title="appData.name"
+    >
       {{ appData.name }}
     </div>
     <div class="recommend__item_type ellipsis text_center">

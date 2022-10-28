@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onActivated, ref } from 'vue'
 
 import SearchInput from '@/components/SearchInput.vue'
 import SearchPage from '@/views/SearchPage.vue'
 import SearchResult from '@/views/SearchResult.vue'
 
 import { useAppStore } from '@/stores/useAppStore'
-import { filterAndClassify } from './utils/helper'
 
 const appStore = useAppStore()
 let view = computed(() => (searchKey.value ? SearchResult : SearchPage))
 let searchKey = ref('')
+const mainbox = ref()
 
-/**
- * 搜索处理事件
- * @param key 搜索关键字
- */
+// 搜索事件
 const handleSearch = (key: string) => {
   key = key.toLowerCase().trim()
   searchKey.value = key
@@ -24,22 +21,12 @@ const handleSearch = (key: string) => {
     return
   }
 
-  let {
-    ids,
-    firstList: recSearchNameAppList,
-    secondList: recSearchOtherAppList
-  } = filterAndClassify(appStore.recommendApps, key)
-
-  let { firstList: freeSearchNameAppList, secondList: freeSearchOtherAppList } =
-    filterAndClassify(appStore.topFreeApps, key, ids)
-
-  appStore.updateSearchResultApps([
-    ...recSearchNameAppList,
-    ...freeSearchNameAppList,
-    ...recSearchOtherAppList,
-    ...freeSearchOtherAppList
-  ])
+  mainbox.value.style.overflow = 'hidden'
+  mainbox.value.scrollTop = 0
+  appStore.updateSearchResultApps(key)
+  mainbox.value.style.overflow = 'auto'
 }
+
 </script>
 
 <template>
@@ -47,7 +34,7 @@ const handleSearch = (key: string) => {
     <SearchInput @search="handleSearch" />
   </div>
 
-  <div class="main">
+  <div class="main" ref="mainbox" id="mainbox">
     <KeepAlive>
       <component :is="view" />
     </KeepAlive>

@@ -1,5 +1,6 @@
 import type { AppInfoListType } from '@/types'
 import { defineStore } from 'pinia'
+import { filterAndClassify } from '@/utils/helper'
 
 export const useAppStore = defineStore('appStore', {
   state: () =>
@@ -21,8 +22,24 @@ export const useAppStore = defineStore('appStore', {
     updateTopFreeApps(data: AppInfoListType) {
       this.topFreeApps = data
     },
-    updateSearchResultApps(data: AppInfoListType) {
-      this.searchResultApps = data
+    updateSearchResultApps(key: string) {
+      const {
+        ids,
+        firstList: recSearchNameAppList,
+        secondList: recSearchOtherAppList
+      } = filterAndClassify(this.recommendApps, key)
+
+      const {
+        firstList: freeSearchNameAppList,
+        secondList: freeSearchOtherAppList
+      } = filterAndClassify(this.topFreeApps, key, ids)
+
+      this.searchResultApps = [
+        ...recSearchNameAppList,
+        ...freeSearchNameAppList,
+        ...recSearchOtherAppList,
+        ...freeSearchOtherAppList
+      ]
     }
   }
 })

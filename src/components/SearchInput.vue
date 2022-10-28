@@ -51,5 +51,4 @@ watchEffect(() => {
   </div>
 </template>
 
-<style lang="scss" scoped src="@/assets/style/searchInput.scss">
-</style>
+<style lang="scss" scoped src="@/assets/style/searchInput.scss"></style>

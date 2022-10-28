@@ -11,7 +11,7 @@ describe('Rate.vue', () => {
     rateFilled = wrapper.vm.$el.querySelector('.rate_filled')
   })
 
-  it('props score', async () => {
+  it('Rate.vue props score', async () => {
     const score = 4.75279
     const defaultMax = 5
     await wrapper.setProps({ score })
@@ -19,7 +19,7 @@ describe('Rate.vue', () => {
     expect(rateFilled.style.width).toBe(expectValue)
   })
 
-  it('props default value of score ande max', async () => {
+  it('Rate.vue props default value of score ande max', async () => {
     const defaultScore = 0
     const defaultMax = 5
     expect(wrapper.props('score')).toBe(defaultScore)
@@ -27,12 +27,12 @@ describe('Rate.vue', () => {
     expect(rateFilled.style.width).toBe('0%')
   })
 
-  it('props score=6 max=10', async () => {
+  it('Rate.vue props score=6 max=10', async () => {
     await wrapper.setProps({ score: 6, max: 10 })
     expect(rateFilled.style.width).toBe('60%')
   })
 
-  it('props score=70 max=100', async () => {
+  it('Rate.vue props score=70 max=100', async () => {
     await wrapper.setProps({ score: 70, max: 100 })
     expect(rateFilled.style.width).toBe('70%')
   })

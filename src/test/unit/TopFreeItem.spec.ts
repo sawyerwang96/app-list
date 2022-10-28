@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
-import TopFreeItem from '@/components/topFreeLists/TopFreeItem.vue'
-import { appData } from '@/mock/testMockData'
+import TopFreeItem from '@/components/topFreeList/TopFreeItem.vue'
+import { mockBaseAppData } from '@/mock/testMockData'
 import { vi } from 'vitest'
 
 describe('TopFreeItem.vue', () => {
@@ -12,19 +12,21 @@ describe('TopFreeItem.vue', () => {
     unobserve: vi.fn()
   }))
   vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
-  
+
   let wrapper: VueWrapper
   beforeEach(() => {
-    wrapper = shallowMount(TopFreeItem, { props: { data: appData } })
+    wrapper = shallowMount(TopFreeItem, { props: { data: mockBaseAppData } })
   })
 
   it('TopFreeItem.vue render context', () => {
     const nameWrapper = wrapper.vm.$el.querySelector('.topfree__item_name')
     const typeWrapper = wrapper.vm.$el.querySelector('.topfree__item_type')
-    const commentWrapper = wrapper.vm.$el.querySelector('.topfree__item_comments')
-    expect(nameWrapper.textContent).toBe(appData.name)
-    expect(typeWrapper.textContent).toBe(appData.category)
-    expect(commentWrapper.textContent).toBe(`(${appData.comments})`)
+    const commentWrapper = wrapper.vm.$el.querySelector(
+      '.topfree__item_comments'
+    )
+    expect(nameWrapper.textContent).toBe(mockBaseAppData.name)
+    expect(typeWrapper.textContent).toBe(mockBaseAppData.category)
+    expect(commentWrapper.textContent).toBe(`(${mockBaseAppData.comments})`)
   })
 
   it('TopFreeItem.vue props rank', async () => {
