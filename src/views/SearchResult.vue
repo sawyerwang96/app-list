@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TopFreeItem from '@/components/topFreeLists/TopFreeItem.vue'
+import TopFreeItem from '@/components/topFreeList/TopFreeItem.vue'
 import { useAppStore } from '@/stores/useAppStore'
-import { computed } from 'vue'
+import { computed, onActivated } from 'vue'
 import type { AppInfoListType } from '@/types/index'
 
 const appStore = useAppStore()

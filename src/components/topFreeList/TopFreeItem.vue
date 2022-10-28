@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AppInfoType } from '@/types'
-import { vLazyLoad } from '@/directives/lazyload';
+import { vLazyLoad } from '@/directives/lazyload'
 import { computed } from 'vue'
 import Rate from '../Rate.vue'
 

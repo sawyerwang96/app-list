@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { Debounced } from '@/utils/helper.js'
 import type { Ref } from 'vue'
 
@@ -27,20 +27,19 @@ const keyChangeEvent = (key: string) => {
   emit('search', key)
 }
 const debounceUse: Function = new Debounced().use(keyChangeEvent, 200)
-const handleSearchKeyChange = (event: Event) => {
-  const key = (event.target as HTMLInputElement).value
+watchEffect(() => {
+  let key = searchKey.value
   debounceUse(key)
-}
+})
 </script>
 
 <template>
   <div class="search">
     <span class="search__icon"></span>
     <input
-      :value="searchKey"
-      @input="handleSearchKeyChange"
+      v-model="searchKey"
       type="text"
-      class="search__input"
+      class="text__input search__input"
       :placeholder="props.placeholder"
     />
     <span
