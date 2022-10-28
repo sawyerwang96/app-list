@@ -6,23 +6,20 @@ export default {
 <script setup lang="ts">
 import type { AppInfoType } from '@/types'
 import { computed } from 'vue'
-export interface Props {
-  detail: AppInfoType
-}
-const props = withDefaults(defineProps<Props>(), {
-  detail: () => ({} as AppInfoType)
-})
-const detail = computed<AppInfoType>(() => props.detail)
+const props = withDefaults(defineProps<{
+  data: AppInfoType
+}>(), {})
+const appData = computed<AppInfoType>(() => props.data)
 </script>
 
 <template>
   <div class="recommend__item">
-    <img :src="detail.image" alt="" class="recommend__item_img" />
-    <div class="recommend__item_name ellipsis text_center" :title="detail.name">
-      {{ detail.name }}
+    <img :src="appData.image" alt="" class="recommend__item_img" />
+    <div class="recommend__item_name ellipsis text_center" :title="appData.name">
+      {{ appData.name }}
     </div>
     <div class="recommend__item_type ellipsis text_center">
-      {{ detail.category }}
+      {{ appData.category }}
     </div>
   </div>
 </template>
@@ -30,6 +27,7 @@ const detail = computed<AppInfoType>(() => props.detail)
 <style scoped lang="scss">
 @import '@/assets/style/variable.scss';
 @import '@/assets/style/mixins/mixin.scss';
+
 .recommend__item {
   width: 80px;
   display: flex;

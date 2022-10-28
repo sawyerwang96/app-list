@@ -1,4 +1,4 @@
-import type { DirectiveBinding } from "vue"
+import type { DirectiveBinding } from 'vue'
 
 export const vLazyLoad = {
   mounted(el: HTMLImageElement, bindings: DirectiveBinding) {
@@ -6,7 +6,7 @@ export const vLazyLoad = {
       if (isIntersecting) {
         el.src = bindings.value
         observer.unobserve(el)
-        el.onerror = () => { }
+        el.onerror = () => {}
       }
     })
     observer.observe(el)

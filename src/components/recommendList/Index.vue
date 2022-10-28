@@ -20,7 +20,7 @@ const recommendApp = computed<AppInfoListType>(() => appStore.recommendApps)
     <div class="recommend__list">
       <RecommendItem
         v-for="item in recommendApp"
-        :detail="item"
+        :data="item"
         :key="'recommend_' + item.id"
       />
     </div>

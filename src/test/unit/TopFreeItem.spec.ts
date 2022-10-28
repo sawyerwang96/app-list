@@ -1,41 +1,30 @@
-import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
-import { mount, VueWrapper } from '@vue/test-utils'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { shallowMount, VueWrapper } from '@vue/test-utils'
 import TopFreeItem from '@/components/topFreeLists/TopFreeItem.vue'
-import type { AppInfoType } from '@/types'
+import { appData } from '@/mock/testMockData'
 import { vi } from 'vitest'
 
-const IntersectionObserverMock = vi.fn(() => ({
-  disconnect: vi.fn(),
-  observe: vi.fn(),
-  takeRecords: vi.fn(),
-  unobserve: vi.fn(),
-}))
-vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
-
-const data: AppInfoType = {
-  id: '1626979616',
-  category: '相片與影片',
-  name: '三國志幻想大陸-卡牌王者',
-  image: 'https://is5-ssl.mzstatic.com/image/thumb/Purple112/v4/50/78/a1/5078a1a0-8687-ece7-2d71-0c0252050af2/logo_youtube_color-1x_U007emarketing-0-6-0-85-220.png/100x100bb.png', 
-  summary: `"===遊戲特色===`,
-  artist: 'Qookka Entertainment Limited', 
-  rate: 4.5, 
-  comments: 100
-}
-
 describe('TopFreeItem.vue', () => {
+  const IntersectionObserverMock = vi.fn(() => ({
+    disconnect: vi.fn(),
+    observe: vi.fn(),
+    takeRecords: vi.fn(),
+    unobserve: vi.fn()
+  }))
+  vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
+  
   let wrapper: VueWrapper
   beforeEach(() => {
-    wrapper = mount(TopFreeItem, {props: { data }})
+    wrapper = shallowMount(TopFreeItem, { props: { data: appData } })
   })
 
   it('TopFreeItem.vue render context', () => {
     const nameWrapper = wrapper.vm.$el.querySelector('.topfree__item_name')
     const typeWrapper = wrapper.vm.$el.querySelector('.topfree__item_type')
     const commentWrapper = wrapper.vm.$el.querySelector('.topfree__item_comments')
-    expect(nameWrapper.textContent).toBe(data.name)
-    expect(typeWrapper.textContent).toBe(data.category)
-    expect(commentWrapper.textContent).toBe(`(${data.comments})`)
+    expect(nameWrapper.textContent).toBe(appData.name)
+    expect(typeWrapper.textContent).toBe(appData.category)
+    expect(commentWrapper.textContent).toBe(`(${appData.comments})`)
   })
 
   it('TopFreeItem.vue props rank', async () => {

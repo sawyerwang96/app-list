@@ -15,7 +15,7 @@ describe('Rate.vue', () => {
     const score = 4.75279
     const defaultMax = 5
     await wrapper.setProps({ score })
-    const expectValue = score / defaultMax * 100 + '%'
+    const expectValue = (score / defaultMax) * 100 + '%'
     expect(rateFilled.style.width).toBe(expectValue)
   })
 
