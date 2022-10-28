@@ -43,6 +43,10 @@ const recommendApp = computed<AppInfoListType>(() => appStore.recommendApps)
   &__list {
     display: flex;
     overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

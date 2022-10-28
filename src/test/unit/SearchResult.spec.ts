@@ -4,7 +4,11 @@ import { useAppStore } from '@/stores/useAppStore'
 import SearchResult from '@/views/SearchResult.vue'
 import TopFreeItem from '@/components/topFreeList/TopFreeItem.vue'
 import { mount, VueWrapper } from '@vue/test-utils'
-import { mockBaseAppData, mockRecommendApps, mockTopFreeApps } from '@/mock/testMockData'
+import {
+  mockBaseAppData,
+  mockRecommendApps,
+  mockTopFreeApps
+} from '@/mock/testMockData'
 
 describe('SearchResult.vue', () => {
   const IntersectionObserverMock = vi.fn(() => ({
